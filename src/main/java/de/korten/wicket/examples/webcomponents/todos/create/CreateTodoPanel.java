@@ -11,15 +11,18 @@ import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LambdaModel;
 import org.apache.wicket.model.Model;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.inject.Inject;
 
 public class CreateTodoPanel extends GenericPanel<TodoEntry> {
 
-    @Autowired
+    @Inject
     private TodosService todosService;
 
     public CreateTodoPanel(String id) {
         super(id, new Model<>(new TodoEntry()));
+
+        setOutputMarkupId(true);
 
         Form<Void> form = new Form<>("form");
 
@@ -32,7 +35,8 @@ public class CreateTodoPanel extends GenericPanel<TodoEntry> {
             protected void onSubmit(AjaxRequestTarget target) {
                 super.onSubmit(target);
                 todosService.save(CreateTodoPanel.this.getModelObject());
-                send(getPage(), Broadcast.EXACT, new TodoCreatedPayload(target));
+                target.add(CreateTodoPanel.this);
+                send(this, Broadcast.BUBBLE, new TodoCreatedPayload(target));
             }
         };
         form.add(submitButton);
