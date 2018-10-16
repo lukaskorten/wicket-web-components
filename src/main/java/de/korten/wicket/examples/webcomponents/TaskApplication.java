@@ -1,6 +1,5 @@
-package de.korten.wicket.examples.webcomponents.configuration;
+package de.korten.wicket.examples.webcomponents;
 
-import de.korten.wicket.examples.webcomponents.HomePage;
 import org.apache.wicket.Page;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
@@ -8,16 +7,17 @@ import org.springframework.beans.BeansException;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.wicketstuff.annotation.scan.AnnotatedMountScanner;
 
 @SpringBootApplication
-public class WicketApplication extends WebApplication implements ApplicationContextAware {
+public class TaskApplication extends WebApplication implements ApplicationContextAware {
 
 
     private ApplicationContext applicationContext;
 
     @Override
     public Class<? extends Page> getHomePage() {
-        return HomePage.class;
+        return TasksPage.class;
     }
 
     @Override
@@ -25,6 +25,9 @@ public class WicketApplication extends WebApplication implements ApplicationCont
         super.init();
 
         getComponentInstantiationListeners().add(new SpringComponentInjector(this, applicationContext));
+
+        AnnotatedMountScanner mountScanner = new AnnotatedMountScanner();
+        mountScanner.scanPackage("de.korten.wicket.examples.webcomponents").mount(this);
     }
 
     @Override

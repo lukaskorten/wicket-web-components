@@ -1,7 +1,7 @@
 package de.korten.wicket.examples.webcomponents.todos.create;
 
-import de.korten.wicket.examples.webcomponents.todos.TodoEntry;
-import de.korten.wicket.examples.webcomponents.todos.TodosService;
+import de.korten.wicket.examples.webcomponents.todos.TaskEntry;
+import de.korten.wicket.examples.webcomponents.todos.TaskService;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.event.Broadcast;
@@ -14,19 +14,19 @@ import org.apache.wicket.model.Model;
 
 import javax.inject.Inject;
 
-public class CreateTodoPanel extends GenericPanel<TodoEntry> {
+public class CreateTaskPanel extends GenericPanel<TaskEntry> {
 
     @Inject
-    private TodosService todosService;
+    private TaskService taskService;
 
-    public CreateTodoPanel(String id) {
-        super(id, new Model<>(new TodoEntry()));
+    public CreateTaskPanel(String id) {
+        super(id, new Model<>(new TaskEntry()));
 
         setOutputMarkupId(true);
 
         Form<Void> form = new Form<>("form");
 
-        IModel<String> textModel = LambdaModel.of(getModel(), TodoEntry::getText, TodoEntry::setText);
+        IModel<String> textModel = LambdaModel.of(getModel(), TaskEntry::getText, TaskEntry::setText);
         TextField<String> todoInput = new TextField<>("todoInput", textModel);
         form.add(todoInput);
 
@@ -34,9 +34,9 @@ public class CreateTodoPanel extends GenericPanel<TodoEntry> {
             @Override
             protected void onSubmit(AjaxRequestTarget target) {
                 super.onSubmit(target);
-                todosService.save(CreateTodoPanel.this.getModelObject());
-                target.add(CreateTodoPanel.this);
-                send(this, Broadcast.BUBBLE, new TodoCreatedPayload(target));
+                taskService.save(CreateTaskPanel.this.getModelObject());
+                target.add(CreateTaskPanel.this);
+                send(this, Broadcast.BUBBLE, new TaskCreatedPayload(target));
             }
         };
         form.add(submitButton);

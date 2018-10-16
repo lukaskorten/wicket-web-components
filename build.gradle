@@ -1,12 +1,9 @@
 buildscript {
-	ext {
-		springBootVersion = '2.0.5.RELEASE'
-	}
 	repositories {
 		mavenCentral()
 	}
 	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${version_spring_boot}")
 	}
 }
 
@@ -25,11 +22,22 @@ repositories {
 
 
 dependencies {
-	implementation(
-			'org.apache.wicket:wicket-core:8.1.0',
-			'org.apache.wicket:wicket-spring:8.1.0',
-			'org.springframework.boot:spring-boot-starter-web'
-
+	compile(
+			"org.apache.wicket:wicket-core:${version_wicket}",
+			"org.apache.wicket:wicket-spring:${version_wicket}",
+			"org.wicketstuff:wicketstuff-annotation:${version_wicket}",
+			"org.springframework.boot:spring-boot-starter-web",
+			"org.springframework.boot:spring-boot-starter-data-jpa",
+            "org.flywaydb:flyway-core:${version_flyway}",
 	)
-	testImplementation('org.springframework.boot:spring-boot-starter-test')
+
+    runtime(
+            "com.h2database:h2:${version_h2}",
+
+    )
+
+	testCompile(
+            "org.flywaydb.flyway-test-extensions:flyway-spring-test:${version_flyway_spring_test}",
+            "org.springframework.boot:spring-boot-starter-test",
+    )
 }

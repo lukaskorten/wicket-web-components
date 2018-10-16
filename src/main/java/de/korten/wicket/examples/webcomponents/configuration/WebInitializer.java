@@ -9,13 +9,14 @@ import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 
 @Configuration
-public class ServletInitializer implements ServletContextInitializer {
+public class WebInitializer implements ServletContextInitializer {
 
     @Override
     public void onStartup(ServletContext servletContext) {
 
         FilterRegistration registration = servletContext.addFilter("wicket-filter", WicketFilter.class);
         registration.setInitParameter(WicketFilter.APP_FACT_PARAM, SpringWebApplicationFactory.class.getName());
+        registration.setInitParameter("applicationClassName", "de.korten.TaskApplication");
         registration.setInitParameter("filterMappingUrlPattern", "/*");
         registration.addMappingForUrlPatterns(null, false, "/*");
 
