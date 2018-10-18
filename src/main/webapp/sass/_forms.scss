@@ -1,0 +1,17 @@
+$main-color: #31aff2;
+
+input {
+  padding: 10px 15px;
+
+  &[type=text] {
+    border: transparent;
+    border-bottom: 1px solid $main-color;
+  }
+
+  &[type=submit] {
+    background: $main-color;
+    border: 1px solid darken($main-color, 5%);
+    color: white;
+
+  }
+}
