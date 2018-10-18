@@ -1,10 +1,9 @@
-package de.korten.wicket.examples.webcomponents;
+package de.korten.wicket.examples.webcomponents.tasks;
 
-import de.korten.wicket.examples.webcomponents.todos.TasksPanel;
 import org.apache.wicket.markup.html.WebPage;
 import org.wicketstuff.annotation.mount.MountPath;
 
-@MountPath("/")
+@MountPath("/tasks")
 public class TasksPage extends WebPage {
 
     public TasksPage() {

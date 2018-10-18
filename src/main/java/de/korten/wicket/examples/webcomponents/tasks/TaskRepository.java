@@ -1,4 +1,4 @@
-package de.korten.wicket.examples.webcomponents.todos;
+package de.korten.wicket.examples.webcomponents.tasks;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

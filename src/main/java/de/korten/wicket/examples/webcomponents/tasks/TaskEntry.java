@@ -1,22 +1,14 @@
-package de.korten.wicket.examples.webcomponents.todos;
+package de.korten.wicket.examples.webcomponents.tasks;
 
-import javax.persistence.*;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 
-@Entity(name = "TASK")
-public class Task {
+public class TaskEntry implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "TEXT")
     private String text;
-
-    @Column(name = "CREATED")
     private LocalDate created;
-
-    @Column(name = "COMPLETED")
     private LocalDate completed;
 
     public Long getId() {

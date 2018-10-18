@@ -1,6 +1,6 @@
-package de.korten.wicket.examples.webcomponents.todos.list;
+package de.korten.wicket.examples.webcomponents.tasks.list;
 
-import de.korten.wicket.examples.webcomponents.todos.TaskEntry;
+import de.korten.wicket.examples.webcomponents.tasks.TaskEntry;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.GenericPanel;

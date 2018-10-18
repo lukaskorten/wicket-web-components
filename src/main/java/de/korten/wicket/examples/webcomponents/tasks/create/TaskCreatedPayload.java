@@ -1,4 +1,4 @@
-package de.korten.wicket.examples.webcomponents.todos.create;
+package de.korten.wicket.examples.webcomponents.tasks.create;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 

@@ -1,7 +1,7 @@
-package de.korten.wicket.examples.webcomponents.todos.create;
+package de.korten.wicket.examples.webcomponents.tasks.create;
 
-import de.korten.wicket.examples.webcomponents.todos.TaskEntry;
-import de.korten.wicket.examples.webcomponents.todos.TaskService;
+import de.korten.wicket.examples.webcomponents.tasks.TaskEntry;
+import de.korten.wicket.examples.webcomponents.tasks.TaskService;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.event.Broadcast;

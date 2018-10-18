@@ -1,8 +1,8 @@
-package de.korten.wicket.examples.webcomponents.todos;
+package de.korten.wicket.examples.webcomponents.tasks;
 
-import de.korten.wicket.examples.webcomponents.todos.create.CreateTaskPanel;
-import de.korten.wicket.examples.webcomponents.todos.create.TaskCreatedPayload;
-import de.korten.wicket.examples.webcomponents.todos.list.TaskListPanel;
+import de.korten.wicket.examples.webcomponents.tasks.create.CreateTaskPanel;
+import de.korten.wicket.examples.webcomponents.tasks.create.TaskCreatedPayload;
+import de.korten.wicket.examples.webcomponents.tasks.list.TaskListPanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.event.IEvent;
 import org.apache.wicket.markup.html.panel.GenericPanel;

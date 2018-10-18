@@ -1,7 +1,7 @@
-package de.korten.wicket.examples.webcomponents.todos.list;
+package de.korten.wicket.examples.webcomponents.tasks.list;
 
-import de.korten.wicket.examples.webcomponents.todos.TaskEntry;
-import de.korten.wicket.examples.webcomponents.todos.TaskService;
+import de.korten.wicket.examples.webcomponents.tasks.TaskEntry;
+import de.korten.wicket.examples.webcomponents.tasks.TaskService;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.model.LoadableDetachableModel;
 

@@ -1,19 +1,24 @@
 package de.korten.wicket.examples.webcomponents;
 
+import de.korten.wicket.examples.webcomponents.tasks.TasksPage;
 import org.apache.wicket.Page;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
-import org.springframework.beans.BeansException;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 import org.wicketstuff.annotation.scan.AnnotatedMountScanner;
 
-@SpringBootApplication
-public class TaskApplication extends WebApplication implements ApplicationContextAware {
+@Component
+public class WebcomponentsWebApplication extends WebApplication {
 
 
-    private ApplicationContext applicationContext;
+    private final ApplicationContext applicationContext;
+
+    @Autowired
+    public WebcomponentsWebApplication(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
+    }
 
     @Override
     public Class<? extends Page> getHomePage() {
@@ -24,15 +29,17 @@ public class TaskApplication extends WebApplication implements ApplicationContex
     protected void init() {
         super.init();
 
-        getComponentInstantiationListeners().add(new SpringComponentInjector(this, applicationContext));
+        initComponentInjector();
+        initPageMounting();
+    }
 
+    private void initComponentInjector() {
+        getComponentInstantiationListeners().add(new SpringComponentInjector(this, applicationContext));
+    }
+
+    private void initPageMounting() {
         AnnotatedMountScanner mountScanner = new AnnotatedMountScanner();
         mountScanner.scanPackage("de.korten.wicket.examples.webcomponents").mount(this);
     }
 
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-
-        this.applicationContext = applicationContext;
-    }
 }
