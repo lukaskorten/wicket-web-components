@@ -6,3 +6,14 @@ gulp_default.dependsOn 'npmInstall'
 gulp_default.dependsOn 'installGulp'
 
 processResources.dependsOn gulp_default
+
+node {
+    version = "8.12.0"
+    npmVersion = '6.4.1'
+    
+    download = true
+}
+
+gulp {
+    colors = true
+}
