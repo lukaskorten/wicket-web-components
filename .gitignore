@@ -24,3 +24,7 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+
+### JavaScript build ###
+node_modules
+*.css
