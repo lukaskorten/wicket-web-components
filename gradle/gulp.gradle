@@ -1,0 +1,8 @@
+
+build.dependsOn gulp_build
+
+gulp_default.dependsOn 'npmInstall'
+
+gulp_default.dependsOn 'installGulp'
+
+processResources.dependsOn gulp_default
