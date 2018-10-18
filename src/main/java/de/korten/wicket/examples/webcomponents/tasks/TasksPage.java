@@ -1,10 +1,10 @@
 package de.korten.wicket.examples.webcomponents.tasks;
 
-import org.apache.wicket.markup.html.WebPage;
+import de.korten.wicket.examples.webcomponents.base.BasePage;
 import org.wicketstuff.annotation.mount.MountPath;
 
 @MountPath("/tasks")
-public class TasksPage extends WebPage {
+public class TasksPage extends BasePage {
 
     public TasksPage() {
 
