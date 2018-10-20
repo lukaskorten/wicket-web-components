@@ -36,7 +36,8 @@ public class TaskListItemPanel extends GenericPanel<TaskEntry> {
     }
 
     private void onTaskDelete(AjaxLink link, AjaxRequestTarget target) {
-        taskService.delete(getModelObject());
-        send(this, Broadcast.BUBBLE, new TaskDeletedPayload(target));
+        TaskEntry deletedTask = getModelObject();
+        taskService.delete(deletedTask);
+        send(this, Broadcast.BUBBLE, new TaskDeletedPayload(target, deletedTask));
     }
 }

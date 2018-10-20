@@ -29,7 +29,8 @@ public class TaskListPanel extends GenericPanel<List<TaskEntry>> {
         super.onEvent(event);
 
         if (event.getPayload() instanceof TaskDeletedPayload) {
-            detachModel();
+            TaskDeletedPayload taskDeletedPayload = (TaskDeletedPayload) event.getPayload();
+            getModelObject().remove(taskDeletedPayload.getDeletedTask());
         }
     }
 }

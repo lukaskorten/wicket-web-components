@@ -34,6 +34,7 @@ public class TaskService {
     }
 
     public List<TaskEntry> findAll() {
+        LOG.info("Alle Tasks laden ...");
         return taskRepository.findAll().stream().map(this::mapToTaskEntry).collect(Collectors.toList());
     }
 
