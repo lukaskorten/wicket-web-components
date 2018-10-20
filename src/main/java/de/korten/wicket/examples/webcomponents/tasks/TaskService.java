@@ -20,6 +20,10 @@ public class TaskService {
 
     public void save(TaskEntry taskEntry) {
 
+        if (taskEntry.getText() == null) {
+            return;
+        }
+
         LOG.info("Neues Todo {}", taskEntry.getText());
 
         Task task = new Task();

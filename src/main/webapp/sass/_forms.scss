@@ -1,17 +1,41 @@
 $main-color: #31aff2;
+$main-hover-color: #31aff21f;
+$default-border-color: #eee;
 
 input {
-  padding: 10px 15px;
+  padding: 14px 28px;
+  border-radius: 4px;
+
+  transition: all ease 250ms;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
 
   &[type=text] {
-    border: transparent;
-    border-bottom: 1px solid $main-color;
+    border: 2px solid $default-border-color;
+
+    &:focus {
+      border-color: darken($default-border-color, 10%);
+      outline: none;
+    }
   }
 
   &[type=submit] {
-    background: $main-color;
-    border: 1px solid darken($main-color, 5%);
-    color: white;
+    background: white;
+    border: 2px solid $main-color;
+    text-transform: uppercase;
+    color: $main-color;
+
+    &:hover, &:focus {
+      background: $main-hover-color;
+      outline: none;
+      cursor: pointer;
+    }
+
+    &:active {
+      background: $main-color;
+      color: white;
+    }
 
   }
 }
