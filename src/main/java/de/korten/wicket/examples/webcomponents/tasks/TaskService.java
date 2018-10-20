@@ -39,6 +39,7 @@ public class TaskService {
 
     private TaskEntry mapToTaskEntry(Task entity) {
         TaskEntry taskEntry = new TaskEntry();
+        taskEntry.setId(entity.getId());
         taskEntry.setText(entity.getText());
         taskEntry.setCreated(entity.getCreated());
         taskEntry.setCompleted(entity.getCompleted());
@@ -52,4 +53,7 @@ public class TaskService {
     }
 
 
+    public void delete(TaskEntry taskEntry) {
+        taskRepository.deleteById(taskEntry.getId());
+    }
 }

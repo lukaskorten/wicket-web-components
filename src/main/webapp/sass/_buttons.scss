@@ -1,0 +1,51 @@
+
+.btn {
+
+  border: 2px solid;
+  background: white;
+
+  padding: 14px 28px;
+  border-radius: 4px;
+
+  transition: all ease 250ms;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  text-transform: uppercase;
+
+}
+
+.btn-primary {
+
+  border-color: $main-color;
+  color: $main-color;
+
+  &:hover, &:focus {
+    background: lighten($main-color, 40%);
+    outline: none;
+  }
+
+  &:active {
+    background: $main-color;
+    color: white;
+  }
+
+}
+
+.btn-warning {
+
+  border-color: $warning-color;
+  color: $warning-color;
+
+  &:hover, &:focus {
+    background: lighten($warning-color, 20%);
+    outline: none;
+  }
+
+  &:active {
+    background: $warning-color;
+    color: white;
+  }
+
+}

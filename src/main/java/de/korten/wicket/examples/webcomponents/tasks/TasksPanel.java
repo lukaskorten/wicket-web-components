@@ -1,7 +1,6 @@
 package de.korten.wicket.examples.webcomponents.tasks;
 
 import de.korten.wicket.examples.webcomponents.tasks.create.CreateTaskPanel;
-import de.korten.wicket.examples.webcomponents.tasks.create.TaskCreatedPayload;
 import de.korten.wicket.examples.webcomponents.tasks.list.TaskListPanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.event.IEvent;
@@ -26,8 +25,8 @@ public class TasksPanel extends GenericPanel<List<TaskEntry>> {
     public void onEvent(IEvent<?> event) {
         super.onEvent(event);
 
-        if (event.getPayload() instanceof TaskCreatedPayload) {
-            AjaxRequestTarget target = ((TaskCreatedPayload) event.getPayload()).getTarget();
+        if (event.getPayload() instanceof TaskListChangedPayload) {
+            AjaxRequestTarget target = ((TaskListChangedPayload) event.getPayload()).getTarget();
             target.add(this);
         }
     }

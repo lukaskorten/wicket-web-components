@@ -16,22 +16,5 @@ input {
     }
   }
 
-  &[type=submit] {
-    background: white;
-    border: 2px solid $main-color;
-    text-transform: uppercase;
-    color: $main-color;
 
-    &:hover, &:focus {
-      background: lighten($main-color, 40%);
-      outline: none;
-      cursor: pointer;
-    }
-
-    &:active {
-      background: $main-color;
-      color: white;
-    }
-
-  }
 }

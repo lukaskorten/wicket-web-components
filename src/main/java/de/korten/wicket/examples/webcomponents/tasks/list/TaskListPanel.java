@@ -1,6 +1,7 @@
 package de.korten.wicket.examples.webcomponents.tasks.list;
 
 import de.korten.wicket.examples.webcomponents.tasks.TaskEntry;
+import org.apache.wicket.event.IEvent;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.GenericPanel;
@@ -21,5 +22,14 @@ public class TaskListPanel extends GenericPanel<List<TaskEntry>> {
 
             }
         });
+    }
+
+    @Override
+    public void onEvent(IEvent<?> event) {
+        super.onEvent(event);
+
+        if (event.getPayload() instanceof TaskDeletedPayload) {
+            detachModel();
+        }
     }
 }
