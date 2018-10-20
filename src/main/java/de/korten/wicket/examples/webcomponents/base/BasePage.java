@@ -8,6 +8,6 @@ public class BasePage extends WebPage {
     @Override
     public void renderHead(IHeaderResponse response) {
         super.renderHead(response);
-        response.render(CssHeaderItem.forReference(MainCssResourceReference.get()));
+        response.render(CssHeaderItem.forUrl("css/main.css"));
     }
 }

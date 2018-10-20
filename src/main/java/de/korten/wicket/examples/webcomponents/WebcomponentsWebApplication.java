@@ -31,6 +31,11 @@ public class WebcomponentsWebApplication extends WebApplication {
 
         initComponentInjector();
         initPageMounting();
+        initMarkupSetting();
+    }
+
+    private void initMarkupSetting() {
+        getMarkupSettings().setStripWicketTags(true);
     }
 
     private void initComponentInjector() {

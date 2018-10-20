@@ -13,15 +13,13 @@ import java.util.List;
 
 public class TasksPanel extends GenericPanel<List<TaskEntry>> {
 
-    private final TaskListPanel taskListPanel;
-
     public TasksPanel(String id) {
         super(id, new ListModel<>(new ArrayList<>()));
 
-        add(new CreateTaskPanel("createTodoPanel"));
-        taskListPanel = new TaskListPanel("taskListPanel");
+        setOutputMarkupId(true);
 
-        add(taskListPanel);
+        add(new CreateTaskPanel("createTodoPanel"));
+        add(new TaskListPanel("taskListPanel"));
     }
 
     @Override
@@ -30,7 +28,7 @@ public class TasksPanel extends GenericPanel<List<TaskEntry>> {
 
         if (event.getPayload() instanceof TaskCreatedPayload) {
             AjaxRequestTarget target = ((TaskCreatedPayload) event.getPayload()).getTarget();
-            target.add(taskListPanel);
+            target.add(this);
         }
     }
 }

@@ -3,11 +3,14 @@
 <body>
 <wicket:panel>
 
-    <li class="task-list-item">
+    <i class="list-item-icon fas fa-angle-right fa-stack"></i>
+    <div class="list-item-text">
         <wicket:container wicket:id="text"/>
-        <span wicket:id="created" class="todo-created"></span>
-        <span wicket:id="completed" class="todo-completed"></span>
-    </li>
+        <small>
+            <span wicket:id="created"></span>
+            <span wicket:id="completed"></span>
+        </small>
+    </div>
 
 </wicket:panel>
 </body>

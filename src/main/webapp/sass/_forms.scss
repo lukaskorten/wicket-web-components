@@ -1,7 +1,3 @@
-$main-color: #31aff2;
-$main-hover-color: #31aff21f;
-$default-border-color: #eee;
-
 input {
   padding: 14px 28px;
   border-radius: 4px;
@@ -27,7 +23,7 @@ input {
     color: $main-color;
 
     &:hover, &:focus {
-      background: $main-hover-color;
+      background: lighten($main-color, 40%);
       outline: none;
       cursor: pointer;
     }

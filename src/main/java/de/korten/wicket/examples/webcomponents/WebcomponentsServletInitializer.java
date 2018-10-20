@@ -5,8 +5,10 @@ import org.apache.wicket.spring.SpringWebApplicationFactory;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.context.annotation.Configuration;
 
+import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
+import java.util.EnumSet;
 
 @Configuration
 public class WebcomponentsServletInitializer implements ServletContextInitializer {
@@ -18,7 +20,7 @@ public class WebcomponentsServletInitializer implements ServletContextInitialize
         registration.setInitParameter(WicketFilter.APP_FACT_PARAM, SpringWebApplicationFactory.class.getName());
         registration.setInitParameter("applicationClassName", WebcomponentsWebApplication.class.getName());
         registration.setInitParameter("filterMappingUrlPattern", "/*");
-        registration.addMappingForUrlPatterns(null, false, "/*");
+        registration.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST, DispatcherType.ERROR), false, "/*");
 
     }
 }

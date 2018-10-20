@@ -34,8 +34,11 @@ public class CreateTaskPanel extends GenericPanel<TaskEntry> {
             @Override
             protected void onSubmit(AjaxRequestTarget target) {
                 super.onSubmit(target);
-                taskService.save(CreateTaskPanel.this.getModelObject());
-                target.add(CreateTaskPanel.this);
+
+                IModel<TaskEntry> taskModel = CreateTaskPanel.this.getModel();
+                taskService.save(taskModel.getObject());
+                taskModel.setObject(new TaskEntry());
+
                 send(this, Broadcast.BUBBLE, new TaskCreatedPayload(target));
             }
         };

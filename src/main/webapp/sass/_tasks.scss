@@ -12,3 +12,28 @@
     flex: 0;
   }
 }
+
+.list {
+  list-style: none;
+  padding: 0;
+}
+
+.list-item {
+  padding: 15px 0;
+  display: flex;
+
+  > .list-item-icon {
+    color: fade_out($main-color, 0.2);
+  }
+}
+
+.list-item-text {
+  flex: 1;
+
+  > small {
+    display: block;
+    font-size: 0.8em;
+    padding: 5px 0;
+    color: $font-color-faded;
+  }
+}
