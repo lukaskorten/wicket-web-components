@@ -2,14 +2,14 @@ package de.korten.wicket.examples.webcomponents.tasks;
 
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class TaskEntry implements Serializable {
 
     private Long id;
     private String text;
-    private LocalDate created;
-    private LocalDate completed;
+    private LocalDateTime created;
+    private LocalDateTime completed;
 
     public Long getId() {
         return id;
@@ -27,19 +27,19 @@ public class TaskEntry implements Serializable {
         this.text = text;
     }
 
-    public LocalDate getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDate created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 
-    public LocalDate getCompleted() {
+    public LocalDateTime getCompleted() {
         return completed;
     }
 
-    public void setCompleted(LocalDate completed) {
+    public void setCompleted(LocalDateTime completed) {
         this.completed = completed;
     }
 }

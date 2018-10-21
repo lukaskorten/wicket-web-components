@@ -3,17 +3,21 @@
 <body>
 <wicket:panel>
 
-    <i class="list-item-icon fas fa-angle-right fa-stack"></i>
+    <i class="list-item-icon"></i>
     <div class="list-item-text">
         <wicket:container wicket:id="text"/>
         <small>
             <span wicket:id="created"></span>
-            <span wicket:id="completed"></span>
+            <wicket:enclosure> - <span wicket:id="completed"></span></wicket:enclosure>
         </small>
     </div>
-    <button wicket:id="deleteTask" type="button" class="icon-btn btn-warning">
-        <i class="fa fa-trash"></i>
+    <button wicket:id="completeTask" type="button" class="icon-btn btn-primary">
+        <i class="fa fa-check"></i>
     </button>
+    <button wicket:id="deleteTask" type="button" class="icon-btn btn-warning">
+        <i class="fa fa-trash-alt"></i>
+    </button>
+
 </wicket:panel>
 </body>
 </html>

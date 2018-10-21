@@ -3,10 +3,11 @@ package de.korten.wicket.examples.webcomponents.tasks;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,14 +29,14 @@ public class TaskService {
 
         Task task = new Task();
         task.setText(taskEntry.getText());
-        task.setCreated(LocalDate.now());
+        task.setCreated(LocalDateTime.now());
 
         taskRepository.save(task);
     }
 
     public List<TaskEntry> findAll() {
         LOG.info("Alle Tasks laden ...");
-        return taskRepository.findAll().stream().map(this::mapToTaskEntry).collect(Collectors.toList());
+        return taskRepository.findAll(new Sort(Sort.Direction.DESC, "created")).stream().map(this::mapToTaskEntry).collect(Collectors.toList());
     }
 
     private TaskEntry mapToTaskEntry(Task entity) {
@@ -56,5 +57,12 @@ public class TaskService {
 
     public void delete(TaskEntry taskEntry) {
         taskRepository.deleteById(taskEntry.getId());
+    }
+
+    public void complete(TaskEntry completedTask) {
+        taskRepository.findById(completedTask.getId()).ifPresent(task -> {
+            task.setCompleted(LocalDateTime.now());
+            taskRepository.save(task);
+        });
     }
 }

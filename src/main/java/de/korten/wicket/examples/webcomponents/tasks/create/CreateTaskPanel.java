@@ -28,6 +28,7 @@ public class CreateTaskPanel extends GenericPanel<TaskEntry> {
 
         IModel<String> textModel = LambdaModel.of(getModel(), TaskEntry::getText, TaskEntry::setText);
         TextField<String> todoInput = new TextField<>("todoInput", textModel);
+        todoInput.setOutputMarkupId(true);
         form.add(todoInput);
 
         AjaxButton submitButton = new AjaxButton("submitButton", form) {
@@ -38,6 +39,8 @@ public class CreateTaskPanel extends GenericPanel<TaskEntry> {
                 IModel<TaskEntry> taskModel = CreateTaskPanel.this.getModel();
                 taskService.save(taskModel.getObject());
                 taskModel.setObject(new TaskEntry());
+
+                target.focusComponent(todoInput);
 
                 send(this, Broadcast.BUBBLE, new TaskCreatedPayload(target));
             }

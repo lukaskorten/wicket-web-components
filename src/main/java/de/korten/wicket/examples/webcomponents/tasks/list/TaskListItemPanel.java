@@ -11,12 +11,15 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LambdaModel;
 
 import javax.inject.Inject;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
+import static org.apache.wicket.behavior.Behavior.onAttribute;
 import static org.wicketstuff.lambda.components.ComponentFactory.ajaxLink;
 
 public class TaskListItemPanel extends GenericPanel<TaskEntry> {
 
+    private final AjaxLink<Object> completeTaskBtn;
+    private final Label completedDate;
     @Inject
     private TaskService taskService;
 
@@ -24,18 +27,43 @@ public class TaskListItemPanel extends GenericPanel<TaskEntry> {
         super(id, todoEntry);
 
         IModel<String> textModel = LambdaModel.of(todoEntry, TaskEntry::getText);
-        IModel<LocalDate> createdModel = LambdaModel.of(todoEntry, TaskEntry::getCreated);
-        IModel<LocalDate> completedModel = LambdaModel.of(todoEntry, TaskEntry::getCompleted);
+        IModel<LocalDateTime> createdModel = LambdaModel.of(todoEntry, TaskEntry::getCreated);
+        IModel<LocalDateTime> completedModel = LambdaModel.of(todoEntry, TaskEntry::getCompleted);
 
         add(new Label("text", textModel));
         add(new Label("created", createdModel));
-        add(new Label("completed", completedModel));
+        completedDate = new Label("completed", completedModel);
+        add(completedDate);
 
+        add(onAttribute("class", cssClass -> isCompleted() ? "is-completed list-item" : "list-item"));
+
+        completeTaskBtn = ajaxLink("completeTask", this::onTaskComplete);
+        add(completeTaskBtn);
         add(ajaxLink("deleteTask", this::onTaskDelete));
 
     }
 
-    private void onTaskDelete(AjaxLink link, AjaxRequestTarget target) {
+    @Override
+    protected void onConfigure() {
+        super.onConfigure();
+
+        boolean completed = isCompleted();
+        completedDate.setVisible(completed);
+        completeTaskBtn.setVisible(!completed);
+    }
+
+    private boolean isCompleted() {
+        return getModelObject().getCompleted() != null;
+    }
+
+
+    private <T> void onTaskComplete(AjaxLink<T> link, AjaxRequestTarget target) {
+        TaskEntry completedTask = getModelObject();
+        taskService.complete(completedTask);
+        send(this, Broadcast.BUBBLE, new TaskCompletedPayload(target, completedTask));
+    }
+
+    private <T> void onTaskDelete(AjaxLink<T> link, AjaxRequestTarget target) {
         TaskEntry deletedTask = getModelObject();
         taskService.delete(deletedTask);
         send(this, Broadcast.BUBBLE, new TaskDeletedPayload(target, deletedTask));

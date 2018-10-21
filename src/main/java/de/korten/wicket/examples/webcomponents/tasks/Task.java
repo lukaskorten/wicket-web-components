@@ -1,7 +1,7 @@
 package de.korten.wicket.examples.webcomponents.tasks;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity(name = "TASK")
 public class Task {
@@ -14,10 +14,10 @@ public class Task {
     private String text;
 
     @Column(name = "CREATED")
-    private LocalDate created;
+    private LocalDateTime created;
 
     @Column(name = "COMPLETED")
-    private LocalDate completed;
+    private LocalDateTime completed;
 
     public Long getId() {
         return id;
@@ -35,19 +35,19 @@ public class Task {
         this.text = text;
     }
 
-    public LocalDate getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDate created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 
-    public LocalDate getCompleted() {
+    public LocalDateTime getCompleted() {
         return completed;
     }
 
-    public void setCompleted(LocalDate completed) {
+    public void setCompleted(LocalDateTime completed) {
         this.completed = completed;
     }
 }
