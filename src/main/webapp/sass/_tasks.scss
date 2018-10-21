@@ -21,17 +21,18 @@
 .list-item {
   padding: 15px 0;
   display: flex;
+  align-items: flex-start;
 
   > .list-item-icon {
     color: fade_out($main-color, 0.2);
   }
 
-  > .btn {
+  > .icon-btn {
     opacity: 0;
   }
 
   &:hover {
-    > .btn {
+    > .icon-btn {
       opacity: 1;
     }
   }
