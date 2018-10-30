@@ -16,8 +16,12 @@ public class TaskService {
 
     private static final Logger LOG = LoggerFactory.getLogger(TaskService.class);
 
+    private final TaskRepository taskRepository;
+
     @Autowired
-    private TaskRepository taskRepository;
+    public TaskService(TaskRepository taskRepository) {
+        this.taskRepository = taskRepository;
+    }
 
     public void save(TaskEntry taskEntry) {
 

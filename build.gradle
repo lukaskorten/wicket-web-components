@@ -29,6 +29,7 @@ repositories {
 
 dependencies {
 	compile(
+			"org.objenesis:objenesis:${version_objenesis}",
 			"org.apache.wicket:wicket-core:${version_wicket}",
 			"org.apache.wicket:wicket-spring:${version_wicket}",
 			"org.wicketstuff:wicketstuff-annotation:${version_wicket}",
