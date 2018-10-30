@@ -28,3 +28,5 @@
 ### JavaScript build ###
 node_modules
 *.css
+src/main/webapp/dist/js/index.js
+src/main/webapp/dist/js/index.js.map
