@@ -18,8 +18,8 @@ import static org.wicketstuff.lambda.components.ComponentFactory.ajaxLink;
 
 public class TaskListItemPanel extends GenericPanel<TaskEntry> {
 
-    private final AjaxLink<Object> completeTaskBtn;
-    private final Label completedDate;
+    private final AjaxLink<Void> completeTaskBtn;
+
     @Inject
     private TaskService taskService;
 
@@ -28,12 +28,9 @@ public class TaskListItemPanel extends GenericPanel<TaskEntry> {
 
         IModel<String> textModel = LambdaModel.of(todoEntry, TaskEntry::getText);
         IModel<LocalDateTime> createdModel = LambdaModel.of(todoEntry, TaskEntry::getCreated);
-        IModel<LocalDateTime> completedModel = LambdaModel.of(todoEntry, TaskEntry::getCompleted);
 
         add(new Label("text", textModel));
-        add(new Label("created", createdModel));
-        completedDate = new Label("completed", completedModel);
-        add(completedDate);
+        add(new MomentLabel("created", createdModel));
 
         add(onAttribute("class", cssClass -> isCompleted() ? "is-completed list-item" : "list-item"));
 
@@ -48,7 +45,6 @@ public class TaskListItemPanel extends GenericPanel<TaskEntry> {
         super.onConfigure();
 
         boolean completed = isCompleted();
-        completedDate.setVisible(completed);
         completeTaskBtn.setVisible(!completed);
     }
 
