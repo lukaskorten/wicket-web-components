@@ -12,10 +12,22 @@ export class MomentLabel extends HTMLElement {
 
     connectedCallback() {
         this.updateTimeAgo();
+        this._intervalId = setInterval(this.updateTimeAgo.bind(this), 60000);
+    }
+
+    disconnectedCallback() {
+        clearInterval(this._intervalId);
     }
 
     updateTimeAgo() {
-        this.timeAgo.innerText = moment(this.value).locale(this.locale).calendar();
+        const givenMoment = moment(this.value);
+        const currentMoment = moment();
+
+        if (givenMoment.isSame(currentMoment, 'day')) {
+            this.timeAgo.innerText = givenMoment.locale(this.locale).fromNow();
+        } else {
+            this.timeAgo.innerText = givenMoment.locale(this.locale).calendar();
+        }
     }
 
     static get observedAttributes() {
